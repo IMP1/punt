@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=2]
+
+[ext_resource path="res://defs/MatchSettings.gd" type="Script" id=1]
+
+[resource]
+script = ExtResource( 1 )
+name = "3 Minute"
+wave_strength = Vector2( 0, 0 )
+friction_multiplier = 1.0
+bounce_multiplier = 1.0
+punt_multiplier = 1.0
+strike_multiplier = 1.0
+slow_mo_on_strike = false
+slow_mo_speed = 0.7
+match_length = 180.0
+goals_to_win = -1
+goals_to_lose = -1
+team_count = 2
+players_per_team = 1

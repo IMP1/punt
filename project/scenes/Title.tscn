@@ -1,0 +1,154 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-BoldItalic.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Bold.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://scenes/Title.gd" type="Script" id=3]
+[ext_resource path="res://scenes/SceneTransition.tscn" type="PackedScene" id=4]
+
+[sub_resource type="DynamicFont" id=1]
+size = 64
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.376471, 0.376471, 0.376471, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 6 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_top = 6.0
+bg_color = Color( 0.376471, 0.376471, 0.376471, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_bottom = 5.0
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+border_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 6 )
+
+[node name="Title" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 3 )
+
+[node name="BackgroundColour" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.211765, 0.796078, 1, 1 )
+
+[node name="Title" type="Label" parent="."]
+anchor_right = 1.0
+margin_top = 32.0
+custom_fonts/font = SubResource( 1 )
+text = "Punt!"
+align = 1
+
+[node name="Options" type="VBoxContainer" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_top = 144.0
+margin_bottom = -32.0
+grow_horizontal = 2
+rect_min_size = Vector2( 240, 0 )
+custom_constants/separation = 16
+alignment = 2
+
+[node name="Play" type="Button" parent="Options"]
+margin_top = 155.0
+margin_right = 240.0
+margin_bottom = 196.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "Play"
+
+[node name="Training" type="Button" parent="Options"]
+margin_top = 212.0
+margin_right = 240.0
+margin_bottom = 253.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "Training"
+
+[node name="Settings" type="Button" parent="Options"]
+margin_top = 269.0
+margin_right = 240.0
+margin_bottom = 310.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "Settings"
+
+[node name="Credits" type="Button" parent="Options"]
+margin_top = 326.0
+margin_right = 240.0
+margin_bottom = 367.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Options"]
+margin_top = 383.0
+margin_right = 240.0
+margin_bottom = 424.0
+mouse_default_cursor_shape = 2
+custom_fonts/font = SubResource( 2 )
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 4 )
+custom_styles/normal = SubResource( 3 )
+text = "Quit"
+
+[node name="SceneTransition" parent="." instance=ExtResource( 4 )]
+scene_node = NodePath("..")
+
+[connection signal="pressed" from="Options/Play" to="." method="_play"]
+[connection signal="pressed" from="Options/Training" to="." method="_training"]
+[connection signal="pressed" from="Options/Settings" to="." method="_settings"]
+[connection signal="pressed" from="Options/Credits" to="." method="_credits"]
+[connection signal="pressed" from="Options/Quit" to="." method="_quit"]

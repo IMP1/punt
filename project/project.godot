@@ -1,0 +1,151 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Arena",
+"language": "GDScript",
+"path": "res://objects/Arena.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "BounceBody2D",
+"language": "GDScript",
+"path": "res://objects/BounceBody2D.gd"
+}, {
+"base": "Resource",
+"class": "MatchSettings",
+"language": "GDScript",
+"path": "res://defs/MatchSettings.gd"
+}, {
+"base": "CanvasItem",
+"class": "Scene",
+"language": "GDScript",
+"path": "res://scenes/Scene.gd"
+}, {
+"base": "Node",
+"class": "SceneTransition",
+"language": "GDScript",
+"path": "res://scenes/SceneTransition.gd"
+}, {
+"base": "Node",
+"class": "State",
+"language": "GDScript",
+"path": "res://defs/State.gd"
+}, {
+"base": "Resource",
+"class": "UserSettings",
+"language": "GDScript",
+"path": "res://defs/UserSettings.gd"
+} ]
+_global_script_class_icons={
+"Arena": "",
+"BounceBody2D": "",
+"MatchSettings": "",
+"Scene": "",
+"SceneTransition": "",
+"State": "",
+"UserSettings": ""
+}
+
+[application]
+
+config/name="Punt"
+run/main_scene="res://scenes/Main.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+InputManager="*res://InputManager.gd"
+
+[display]
+
+window/size/width=2048
+window/size/height=1200
+window/size/test_width=1024
+window/size/test_height=600
+window/stretch/mode="2d"
+
+[gui]
+
+common/drop_mouse_on_gui_input_disabled=true
+
+[importer_defaults]
+
+texture={
+"flags/filter": false
+}
+ogg_vorbis={
+"loop": false
+}
+
+[input]
+
+left_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":-1.0,"script":null)
+ ]
+}
+right_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":0,"axis_value":1.0,"script":null)
+ ]
+}
+up_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":-1.0,"script":null)
+ ]
+}
+down_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":0,"axis":1,"axis_value":1.0,"script":null)
+ ]
+}
+move_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":0,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+swipe_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":2,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+switch_team_prev_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":4,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+switch_team_next_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":5,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+menu_DEVICE={
+"deadzone": 0.5,
+"events": [ Object(InputEventJoypadButton,"resource_local_to_scene":false,"resource_name":"","device":0,"button_index":11,"pressure":0.0,"pressed":false,"script":null)
+ ]
+}
+
+[layer_names]
+
+2d_physics/layer_1="World"
+2d_physics/layer_2="Boat"
+2d_physics/layer_3="Bar"
+2d_physics/layer_4="Ball"
+2d_physics/layer_6="Goal"
+2d_physics/layer_7="Waves"
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

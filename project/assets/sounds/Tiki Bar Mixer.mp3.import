@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Tiki Bar Mixer.mp3-cf667aaf121a795ff15ee50aba76b310.mp3str"
+
+[deps]
+
+source_file="res://assets/sounds/Tiki Bar Mixer.mp3"
+dest_files=[ "res://.import/Tiki Bar Mixer.mp3-cf667aaf121a795ff15ee50aba76b310.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

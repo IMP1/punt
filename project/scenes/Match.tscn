@@ -1,0 +1,328 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://objects/Wave.tscn" type="PackedScene" id=1]
+[ext_resource path="res://objects/Ball.tscn" type="PackedScene" id=2]
+[ext_resource path="res://scenes/Match.gd" type="Script" id=3]
+[ext_resource path="res://data/arenas/Lake.tscn" type="PackedScene" id=4]
+[ext_resource path="res://assets/sounds/success1.ogg" type="AudioStream" id=5]
+[ext_resource path="res://assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-BoldItalic.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://assets/sounds/goal1.ogg" type="AudioStream" id=7]
+[ext_resource path="res://assets/line.png" type="Texture" id=8]
+[ext_resource path="res://assets/sounds/Beachfront Celebration.mp3" type="AudioStream" id=9]
+[ext_resource path="res://scenes/Match_Waves.gd" type="Script" id=10]
+[ext_resource path="res://data/3_min_match.tres" type="Resource" id=11]
+[ext_resource path="res://assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Regular.ttf" type="DynamicFontData" id=13]
+
+[sub_resource type="Curve" id=19]
+_data = [ Vector2( 0.00460829, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.506912, 0.509091 ), 0.746437, 0.746437, 0, 0, Vector2( 1, 0 ), -2.74466, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=4]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=5]
+gradient = SubResource( 4 )
+
+[sub_resource type="Curve" id=6]
+_data = [ Vector2( 0, 0.236364 ), 0.0, 2.07127, 0, 0, Vector2( 0.185393, 1 ), 0.269697, 0.269697, 0, 0, Vector2( 0.595506, 0.581818 ), -0.86303, -0.86303, 0, 0, Vector2( 1, 0 ), -1.14225, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=7]
+curve = SubResource( 6 )
+
+[sub_resource type="ParticlesMaterial" id=1]
+trail_divisor = 2
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 64.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale_random = 1.0
+scale_curve = SubResource( 7 )
+color = Color( 1, 0.843137, 0, 1 )
+color_ramp = SubResource( 5 )
+hue_variation = 1.0
+hue_variation_random = 1.0
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+width = 4
+height = 4
+noise = SubResource( 2 )
+
+[sub_resource type="StyleBoxFlat" id=13]
+bg_color = Color( 0.964706, 0.407966, 0.0392157, 0.752941 )
+border_width_top = 4
+border_width_bottom = 4
+
+[sub_resource type="Curve" id=11]
+min_value = -200.0
+max_value = 200.0
+_data = [ Vector2( 0, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.162921, 152.727 ), 314.39, 314.39, 0, 0, Vector2( 0.859551, 152.727 ), -202.273, -202.273, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=12]
+curve = SubResource( 11 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+emission_shape = 2
+emission_box_extents = Vector3( 0, 60, 0 )
+flag_disable_z = true
+direction = Vector3( -1, 0, 0 )
+spread = 0.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 554.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel_curve = SubResource( 12 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 96
+outline_size = 4
+font_data = ExtResource( 6 )
+
+[sub_resource type="Animation" id=9]
+resource_name = "Goal"
+length = 3.2
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/Label:anchor_left")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 2.9, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -0.5, 0.5, 0.5, 1.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/Label:anchor_right")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3, 2.9, 3.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ -0.5, 0.5, 0.5, 1.5 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/Control/Particles2D:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 2.7, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/ColorRect:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 2.7, 3.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=20]
+resource_name = "ResetPositions"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasModulate:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 0.501961, 0.501961, 0.501961, 1 ), Color( 0.501961, 0.501961, 0.501961, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=15]
+size = 48
+outline_size = 1
+outline_color = Color( 0, 0, 0, 1 )
+font_data = ExtResource( 13 )
+
+[sub_resource type="Curve" id=17]
+_data = [ Vector2( 0.00487805, 0.990909 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), -3.26136, 0.0, 0, 0 ]
+
+[sub_resource type="Gradient" id=18]
+colors = PoolColorArray( 1, 1, 1, 1, 1, 1, 1, 0 )
+
+[sub_resource type="ViewportTexture" id=16]
+viewport_path = NodePath("WaterVelocityBuffer")
+
+[node name="Match" type="Node2D"]
+script = ExtResource( 3 )
+match_settings = ExtResource( 11 )
+
+[node name="Background" type="CanvasLayer" parent="."]
+layer = -10
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.337255, 0.631373, 0.231373, 1 )
+
+[node name="Arena" type="Node2D" parent="."]
+
+[node name="Lake" parent="Arena" instance=ExtResource( 4 )]
+
+[node name="Ripples" type="Node2D" parent="."]
+
+[node name="Wave" parent="Ripples" instance=ExtResource( 1 )]
+visible = false
+strength = SubResource( 19 )
+
+[node name="Objects" type="YSort" parent="."]
+
+[node name="Players" type="YSort" parent="Objects"]
+
+[node name="Balls" type="YSort" parent="Objects"]
+
+[node name="Ball" parent="Objects/Balls" instance=ExtResource( 2 )]
+position = Vector2( -71, 38 )
+
+[node name="Celebration" type="Particles2D" parent="."]
+position = Vector2( -553, 69 )
+scale = Vector2( 2, 2 )
+emitting = false
+amount = 64
+one_shot = true
+explosiveness = 0.7
+randomness = 0.3
+process_material = SubResource( 1 )
+texture = SubResource( 3 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="Celebration"]
+position = Vector2( 994, -161.5 )
+
+[node name="GoalAudio" type="AudioStreamPlayer2D" parent="Celebration"]
+stream = ExtResource( 7 )
+pitch_scale = 4.0
+bus = "Sounds"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="Celebration"]
+
+[node name="ColorRect" type="Panel" parent="Celebration/CanvasLayer"]
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.2
+margin_top = -64.0
+margin_bottom = 64.0
+custom_styles/panel = SubResource( 13 )
+
+[node name="Audio" type="AudioStreamPlayer" parent="Celebration/CanvasLayer"]
+stream = ExtResource( 5 )
+volume_db = -5.244
+bus = "Sounds"
+
+[node name="Control" type="Control" parent="Celebration/CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 0.2
+anchor_right = 1.0
+anchor_bottom = 0.2
+
+[node name="Particles2D" type="Particles2D" parent="Celebration/CanvasLayer/Control"]
+amount = 24
+lifetime = 4.0
+preprocess = 4.0
+speed_scale = 2.0
+process_material = SubResource( 10 )
+texture = ExtResource( 8 )
+
+[node name="Label" type="Label" parent="Celebration/CanvasLayer"]
+anchor_left = -0.5
+anchor_top = 0.2
+anchor_right = -0.5
+anchor_bottom = 0.2
+margin_left = -145.5
+margin_top = -60.0
+margin_right = 145.5
+margin_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_colors/font_color = Color( 1, 0.913725, 0, 1 )
+custom_colors/font_outline_modulate = Color( 1, 0.470588, 0, 1 )
+custom_colors/font_color_shadow = Color( 1, 0.470588, 0, 1 )
+custom_constants/shadow_offset_x = -12
+custom_constants/shadow_offset_y = 4
+custom_fonts/font = SubResource( 8 )
+text = "GOAL!"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Celebration"]
+anims/Goal = SubResource( 9 )
+anims/ResetPositions = SubResource( 20 )
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true
+bus = "Music"
+
+[node name="MatchInfo" type="CanvasLayer" parent="."]
+
+[node name="Score" type="HBoxContainer" parent="MatchInfo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -66.0
+margin_top = 16.0
+margin_right = 66.0
+grow_horizontal = 2
+custom_constants/separation = 48
+alignment = 1
+
+[node name="Clock" type="Label" parent="MatchInfo"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -88.5
+margin_top = 80.0
+margin_right = 88.5
+margin_bottom = 80.0
+grow_horizontal = 2
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_fonts/font = SubResource( 15 )
+text = "00:00"
+align = 1
+
+[node name="ResetTween" type="Tween" parent="."]
+
+[node name="Statistics" type="Node" parent="."]
+
+[node name="WaterVelocityBuffer" type="Viewport" parent="."]
+size = Vector2( 1024, 600 )
+size_override_stretch = true
+transparent_bg = true
+render_target_v_flip = true
+gui_disable_input = true
+gui_snap_controls_to_pixels = false
+script = ExtResource( 10 )
+
+[node name="Node2D" type="Node2D" parent="WaterVelocityBuffer"]
+position = Vector2( 512, 300 )
+
+[node name="Line2D" type="Line2D" parent="WaterVelocityBuffer/Node2D"]
+visible = false
+points = PoolVector2Array( -294, 45, -222, -49, -42, 79, 106, -68, -28, -144, -136, -103, -181, -144, -329, -89, -362, -21 )
+width = 24.0
+width_curve = SubResource( 17 )
+default_color = Color( 1, 1, 1, 1 )
+gradient = SubResource( 18 )
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+
+[node name="DEBUG_Waves" type="Sprite" parent="."]
+texture = SubResource( 16 )
