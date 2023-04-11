@@ -1,8 +1,8 @@
 extends Node
 class_name SceneTransition
 
-signal transitioned_in()
-signal transitioned_out()
+signal transitioned_in
+signal transitioned_out
 
 enum Direction { LEFT = 0, RIGHT = 1, UP = 2, DOWN = 3 }
 
@@ -16,9 +16,10 @@ onready var window_height: float = ProjectSettings.get_setting("display/window/s
 func transition_out(duration: float) -> void:
 	if _scene is Control:
 		_scene.mouse_filter = Control.MOUSE_FILTER_IGNORE
+	emit_signal("transitioned_out")
 
 func transition_in(duration: float) -> void:
-	pass
+	emit_signal("transitioned_in")
 
 func _fly_out(tween: SceneTreeTween, direction: int, duration: float) -> void:
 	var property_name: String
@@ -63,3 +64,6 @@ func _fade_out(tween: SceneTreeTween, duration: float) -> void:
 func _fade_in(tween: SceneTreeTween, duration: float) -> void:
 	_scene.modulate.a = 0
 	tween.tween_property(_scene, "modulate", Color(1, 1, 1, 1.0), duration)
+
+func _wipe(tween: SceneTreeTween, direction: int, duration: float) -> void:
+	pass

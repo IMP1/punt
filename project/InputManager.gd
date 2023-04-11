@@ -9,6 +9,7 @@ func _ready():
 	Input.connect("joy_connection_changed", self, "_gamepad_connection_changed")
 
 func register_gamepad(device_id: int):
+	print("registered gamepad: " + str(device_id))
 	registered_gamepads[device_id] = true
 	for a in InputMap.get_actions():
 		var any_device_action: String = a as String

@@ -20,6 +20,10 @@ func change_scene(next_scene: Node, duration:float=DEFAULT_DURATION) -> void:
 	var transition_in: SceneTransition = _current_scene.get_node_or_null("SceneTransition")
 	if transition_in != null:
 		transition_in.transition_in(duration)
+		yield(transition_in, "transitioned_in")
+	print("New scene transitioned in")
+	if _current_scene.has_method("start"):
+		_current_scene.start()
 
 func _scene_finished(scene: Node):
 	scene.queue_free()

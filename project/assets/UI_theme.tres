@@ -1,0 +1,59 @@
+[gd_resource type="Theme" load_steps=6 format=2]
+
+[ext_resource path="res://assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Bold.ttf" type="DynamicFontData" id=1]
+
+[sub_resource type="DynamicFont" id=2]
+size = 32
+font_data = ExtResource( 1 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+border_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 6 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0.376471, 0.376471, 0.376471, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 6 )
+
+[sub_resource type="StyleBoxFlat" id=5]
+content_margin_top = 6.0
+bg_color = Color( 0.376471, 0.376471, 0.376471, 1 )
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color( 1, 1, 1, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+expand_margin_bottom = 5.0
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 1 )
+
+[resource]
+Button/fonts/font = SubResource( 2 )
+Button/styles/disabled = SubResource( 3 )
+Button/styles/focus = SubResource( 4 )
+Button/styles/hover = SubResource( 4 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 5 )
+Label/fonts/font = SubResource( 2 )

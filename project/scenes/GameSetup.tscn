@@ -1,46 +1,83 @@
-[gd_scene load_steps=14 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://assets/fonts/Atkinson_Hyperlegible/AtkinsonHyperlegible-Bold.ttf" type="DynamicFontData" id=1]
 [ext_resource path="res://scenes/GameSetup.gd" type="Script" id=2]
 [ext_resource path="res://assets/controller-icons/Xbox One/XboxOne_LB.png" type="Texture" id=3]
 [ext_resource path="res://assets/controller-icons/Xbox One/XboxOne_RB.png" type="Texture" id=4]
+[ext_resource path="res://assets/controller-icons/Keyboard & Mouse/Dark/Arrow_Right_Key_Dark.png" type="Texture" id=5]
+[ext_resource path="res://assets/UI_theme.tres" type="Theme" id=6]
+[ext_resource path="res://assets/controller-icons/Keyboard & Mouse/Dark/Arrow_Left_Key_Dark.png" type="Texture" id=7]
+[ext_resource path="res://icon.png" type="Texture" id=8]
+[ext_resource path="res://gui/Font.tres" type="DynamicFont" id=9]
 
 [sub_resource type="DynamicFont" id=1]
 size = 64
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=9]
-size = 48
+[sub_resource type="StyleBoxFlat" id=19]
+bg_color = Color( 1, 1, 1, 0.25098 )
+draw_center = false
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color( 1, 1, 1, 1 )
+border_blend = true
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 2
+shadow_offset = Vector2( 0, 6 )
+
+[sub_resource type="StyleBoxFlat" id=3]
+bg_color = Color( 0.25098, 0.25098, 0.25098, 1 )
+border_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 6 )
+
+[sub_resource type="Theme" id=17]
+Button/styles/focus = SubResource( 19 )
+Button/styles/normal = SubResource( 3 )
+Button/styles/pressed = SubResource( 3 )
+Panel/styles/panel = SubResource( 3 )
+
+[sub_resource type="DynamicFont" id=13]
+size = 28
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=8]
-size = 24
-font_data = ExtResource( 1 )
-
-[sub_resource type="ButtonGroup" id=10]
-
-[sub_resource type="DynamicFont" id=4]
-size = 48
-font_data = ExtResource( 1 )
-
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=2]
 size = 32
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=12]
-size = 24
+[sub_resource type="StyleBoxFlat" id=18]
+bg_color = Color( 0.752941, 0.32549, 0.32549, 1 )
+border_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_color = Color( 0.0627451, 0.0627451, 0.0627451, 1 )
+shadow_size = 1
+shadow_offset = Vector2( 0, 6 )
+
+[sub_resource type="DynamicFont" id=15]
+size = 48
 font_data = ExtResource( 1 )
 
-[sub_resource type="DynamicFont" id=7]
-size = 20
-font_data = ExtResource( 1 )
-
-[sub_resource type="Theme" id=6]
-LineEdit/fonts/font = SubResource( 7 )
+[sub_resource type="Theme" id=16]
+Label/fonts/font = ExtResource( 9 )
 
 [node name="GameSetup" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+theme = ExtResource( 6 )
 script = ExtResource( 2 )
 
 [node name="Background" type="ColorRect" parent="."]
@@ -56,60 +93,349 @@ custom_fonts/font = SubResource( 1 )
 text = "Match Setup"
 align = 1
 
-[node name="Arena" type="Control" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
+[node name="Options" type="VBoxContainer" parent="."]
+anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = -400.0
-margin_top = 160.0
-margin_right = 400.0
-margin_bottom = -160.0
+margin_left = 711.0
+margin_top = 183.0
+margin_right = -701.0
+margin_bottom = -68.0
+theme = SubResource( 17 )
+custom_constants/separation = 24
 
-[node name="Title" type="Label" parent="Arena"]
+[node name="GameMode" type="Control" parent="Options"]
+margin_right = 636.0
+margin_bottom = 80.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Title" type="Label" parent="Options/GameMode"]
 anchor_right = 1.0
 margin_bottom = 14.0
-custom_fonts/font = SubResource( 9 )
+custom_fonts/font = SubResource( 13 )
+text = "Game Mode"
+align = 1
+
+[node name="Button" type="Button" parent="Options/GameMode"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -40.0
+margin_right = 160.0
+grow_horizontal = 2
+button_mask = 0
+text = "Classic"
+
+[node name="Left" type="TextureRect" parent="Options/GameMode/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Options/GameMode/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Arena" type="Control" parent="Options"]
+margin_top = 104.0
+margin_right = 636.0
+margin_bottom = 360.0
+rect_min_size = Vector2( 0, 256 )
+
+[node name="Title" type="Label" parent="Options/Arena"]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
 text = "Arena"
 align = 1
 
-[node name="ArenaChoice" type="Button" parent="Arena"]
-anchor_right = 1.0
-margin_top = 64.0
-margin_bottom = 544.0
-focus_neighbour_left = NodePath("../../Settings/GameDuration/Endings/Time/CheckButton")
+[node name="Button" type="Button" parent="Options/Arena"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -218.0
+margin_right = 160.0
+grow_horizontal = 2
+button_mask = 0
 
-[node name="TextureRect" type="TextureRect" parent="Arena/ArenaChoice"]
+[node name="Left" type="TextureRect" parent="Options/Arena/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Options/Arena/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Value" type="Label" parent="Options/Arena/Button"]
+anchor_right = 1.0
+margin_bottom = 41.0
+custom_fonts/font = SubResource( 2 )
+text = "Lake"
+align = 1
+
+[node name="Icon" type="TextureRect" parent="Options/Arena/Button"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -128.0
+margin_top = -160.0
+margin_right = 128.0
+margin_bottom = -16.0
+texture = ExtResource( 8 )
+expand = true
+stretch_mode = 6
+
+[node name="TeamSize" type="Control" parent="Options"]
+margin_top = 384.0
+margin_right = 636.0
+margin_bottom = 464.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Title" type="Label" parent="Options/TeamSize"]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
+text = "Team Size"
+align = 1
+
+[node name="Button" type="Button" parent="Options/TeamSize"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -40.0
+margin_right = 160.0
+grow_horizontal = 2
+button_mask = 0
+
+[node name="Left" type="TextureRect" parent="Options/TeamSize/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Options/TeamSize/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Label" type="Label" parent="Options/TeamSize/Button"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+text = "1 vs 1"
+align = 1
 
-[node name="TeamSizes" type="HBoxContainer" parent="Arena"]
+[node name="TimeLimit" type="Control" parent="Options"]
+margin_top = 488.0
+margin_right = 636.0
+margin_bottom = 568.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Title" type="Label" parent="Options/TimeLimit"]
 anchor_right = 1.0
-margin_top = 608.0
-margin_bottom = 704.0
-custom_constants/separation = 64
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
+text = "Time Limit"
+align = 1
 
-[node name="1v1" type="Button" parent="Arena/TeamSizes"]
-margin_right = 368.0
-margin_bottom = 96.0
-focus_neighbour_top = NodePath("../../ArenaChoice")
-focus_neighbour_right = NodePath("../2v2")
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 8 )
+[node name="Button" type="Button" parent="Options/TimeLimit"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -40.0
+margin_right = 160.0
+grow_horizontal = 2
+custom_colors/font_color_focus = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color_hover = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/pressed = SubResource( 18 )
 toggle_mode = true
 pressed = true
-group = SubResource( 10 )
-text = "1 v 1"
+text = "0"
 
-[node name="2v2" type="Button" parent="Arena/TeamSizes"]
-margin_left = 432.0
-margin_right = 800.0
-margin_bottom = 96.0
-focus_neighbour_left = NodePath("../1v1")
-focus_neighbour_top = NodePath("../../ArenaChoice")
-size_flags_horizontal = 3
-custom_fonts/font = SubResource( 8 )
-group = SubResource( 10 )
-text = "2 v 2"
+[node name="Left" type="TextureRect" parent="Options/TimeLimit/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Options/TimeLimit/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="GoalsToScore" type="Control" parent="Options"]
+margin_top = 592.0
+margin_right = 636.0
+margin_bottom = 672.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Title" type="Label" parent="Options/GoalsToScore"]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
+text = "Goals to Score to Win"
+align = 1
+
+[node name="Button" type="Button" parent="Options/GoalsToScore"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -40.0
+margin_right = 160.0
+grow_horizontal = 2
+custom_colors/font_color_focus = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color_hover = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/pressed = SubResource( 18 )
+toggle_mode = true
+text = "0"
+
+[node name="Left" type="TextureRect" parent="Options/GoalsToScore/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Options/GoalsToScore/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="GoalsToConcede" type="Control" parent="Options"]
+margin_top = 696.0
+margin_right = 636.0
+margin_bottom = 776.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Title" type="Label" parent="Options/GoalsToConcede"]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
+text = "Goals to Concede to Lose"
+align = 1
+
+[node name="Button" type="Button" parent="Options/GoalsToConcede"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -40.0
+margin_right = 160.0
+grow_horizontal = 2
+custom_colors/font_color_focus = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color_hover = Color( 0.501961, 0.501961, 0.501961, 1 )
+custom_colors/font_color_pressed = Color( 1, 1, 1, 1 )
+custom_styles/pressed = SubResource( 18 )
+toggle_mode = true
+text = "0"
+
+[node name="Left" type="TextureRect" parent="Options/GoalsToConcede/Button"]
+anchor_top = 0.5
+anchor_bottom = 0.5
+margin_top = -24.0
+margin_right = 48.0
+margin_bottom = 24.0
+texture = ExtResource( 7 )
+expand = true
+
+[node name="Right" type="TextureRect" parent="Options/GoalsToConcede/Button"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = -48.0
+margin_top = -24.0
+margin_bottom = 24.0
+texture = ExtResource( 5 )
+expand = true
+
+[node name="Modifiers" type="Control" parent="Options"]
+margin_top = 800.0
+margin_right = 636.0
+margin_bottom = 880.0
+rect_min_size = Vector2( 0, 80 )
+
+[node name="Title" type="Label" parent="Options/Modifiers"]
+anchor_right = 1.0
+margin_bottom = 14.0
+custom_fonts/font = SubResource( 13 )
+text = "Game Modifiers"
+align = 1
+
+[node name="Button" type="Button" parent="Options/Modifiers"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -160.0
+margin_top = -40.0
+margin_right = 160.0
+grow_horizontal = 2
+custom_styles/pressed = SubResource( 18 )
+text = "- None -"
 
 [node name="Teams" type="Control" parent="."]
 anchor_left = 0.5
@@ -123,7 +449,7 @@ margin_bottom = -160.0
 [node name="Title" type="Label" parent="Teams"]
 anchor_right = 1.0
 margin_bottom = 60.0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 15 )
 text = "Teams"
 align = 1
 
@@ -132,6 +458,7 @@ anchor_right = 1.0
 margin_top = 77.0
 margin_bottom = 126.0
 grow_horizontal = 2
+theme = SubResource( 16 )
 alignment = 1
 
 [node name="PlayerList" type="VBoxContainer" parent="Teams"]
@@ -157,156 +484,6 @@ grow_horizontal = 0
 texture = ExtResource( 4 )
 expand = true
 
-[node name="Settings" type="Control" parent="."]
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = 160.0
-margin_right = -464.0
-margin_bottom = -160.0
-
-[node name="Title" type="Label" parent="Settings"]
-anchor_right = 1.0
-margin_bottom = 60.0
-custom_fonts/font = SubResource( 4 )
-text = "Settings"
-align = 1
-
-[node name="GameDuration" type="Control" parent="Settings"]
-anchor_right = 1.0
-margin_top = 80.0
-margin_bottom = 416.0
-
-[node name="Label" type="Label" parent="Settings/GameDuration"]
-anchor_right = 1.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 11 )
-text = "Game Duration"
-align = 1
-
-[node name="Endings" type="VBoxContainer" parent="Settings/GameDuration"]
-anchor_right = 1.0
-anchor_bottom = 1.0
-margin_left = 64.0
-margin_top = 64.0
-
-[node name="Time" type="Control" parent="Settings/GameDuration/Endings"]
-margin_right = 432.0
-margin_bottom = 88.0
-focus_neighbour_right = NodePath("../GoalsScored")
-size_flags_vertical = 3
-
-[node name="CheckButton" type="CheckButton" parent="Settings/GameDuration/Endings/Time"]
-margin_right = 105.0
-margin_bottom = 40.0
-focus_neighbour_right = NodePath("../../../../../Arena/ArenaChoice")
-focus_neighbour_bottom = NodePath("../../GoalsScored/CheckButton")
-custom_constants/check_vadjust = 32
-custom_constants/hseparation = -96
-custom_fonts/font = SubResource( 12 )
-text = "Time Limit"
-
-[node name="Minutes" type="SpinBox" parent="Settings/GameDuration/Endings/Time"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -5.0
-margin_top = -55.0
-margin_right = 93.0
-margin_bottom = -20.0
-grow_horizontal = 0
-grow_vertical = 0
-theme = SubResource( 6 )
-suffix = "m"
-
-[node name="Seconds" type="SpinBox" parent="Settings/GameDuration/Endings/Time"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 93.0
-margin_top = -55.0
-margin_right = 191.0
-margin_bottom = -20.0
-grow_vertical = 0
-theme = SubResource( 6 )
-suffix = "s"
-
-[node name="GoalsScored" type="Control" parent="Settings/GameDuration/Endings"]
-margin_top = 92.0
-margin_right = 432.0
-margin_bottom = 180.0
-focus_neighbour_left = NodePath("../Time")
-focus_neighbour_right = NodePath("../GoalsConceded")
-size_flags_vertical = 3
-
-[node name="CheckButton" type="CheckButton" parent="Settings/GameDuration/Endings/GoalsScored"]
-margin_right = 105.0
-margin_bottom = 40.0
-focus_neighbour_top = NodePath("../../Time/CheckButton")
-focus_neighbour_right = NodePath("../../../../../Arena/ArenaChoice")
-focus_neighbour_bottom = NodePath("../../GoalsConceded/CheckButton")
-custom_constants/check_vadjust = 32
-custom_constants/hseparation = -96
-custom_fonts/font = SubResource( 12 )
-text = "Goals Scored"
-
-[node name="Goals" type="SpinBox" parent="Settings/GameDuration/Endings/GoalsScored"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 38.0
-margin_top = -54.0
-margin_right = 136.0
-margin_bottom = -19.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource( 6 )
-
-[node name="GoalsConceded" type="Control" parent="Settings/GameDuration/Endings"]
-margin_top = 184.0
-margin_right = 432.0
-margin_bottom = 272.0
-focus_neighbour_left = NodePath("../GoalsScored")
-size_flags_vertical = 3
-
-[node name="CheckButton" type="CheckButton" parent="Settings/GameDuration/Endings/GoalsConceded"]
-margin_right = 131.0
-margin_bottom = 40.0
-focus_neighbour_top = NodePath("../../GoalsScored/CheckButton")
-focus_neighbour_right = NodePath("../../../../../Arena/ArenaChoice")
-custom_constants/check_vadjust = 32
-custom_constants/hseparation = -96
-custom_fonts/font = SubResource( 12 )
-text = "Goals Conceded"
-
-[node name="Goals" type="SpinBox" parent="Settings/GameDuration/Endings/GoalsConceded"]
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = 34.0
-margin_top = -48.0
-margin_right = 132.0
-margin_bottom = -13.0
-grow_horizontal = 2
-grow_vertical = 0
-theme = SubResource( 6 )
-
-[node name="Options" type="Control" parent="Settings"]
-anchor_right = 1.0
-margin_top = 448.0
-margin_bottom = 716.0
-
-[node name="Label" type="Label" parent="Settings/Options"]
-anchor_right = 1.0
-margin_bottom = 41.0
-custom_fonts/font = SubResource( 11 )
-text = "Game Options"
-align = 1
-
 [node name="Play" type="Button" parent="."]
 anchor_left = 0.5
 anchor_top = 1.0
@@ -318,7 +495,8 @@ margin_right = 54.5
 margin_bottom = -32.0
 grow_horizontal = 2
 grow_vertical = 0
-custom_fonts/font = SubResource( 4 )
+custom_fonts/font = SubResource( 15 )
 text = "Play"
 
+[connection signal="pressed" from="Options/Modifiers/Button" to="." method="_open_game_modifiers"]
 [connection signal="pressed" from="Play" to="." method="_begin_match"]
